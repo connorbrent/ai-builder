@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Builder Plan — Connor Moody</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    :root {
+      --ocean-blue: #2274A4;
+      --sky-tint: #D7F0FF;
+      --ice-blue: #A2DEF9;
+      --near-black: #141413;
+      --charcoal: #333333;
+      --gold: #FFCB00;
+      --green: #2e9e63;
+      --orange: #d47a1e;
+      --red: #c0392b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #fff;
+      color: var(--charcoal);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    a { color: var(--ocean-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    .header {
+      background: var(--ocean-blue);
+      padding: 64px 40px 56px;
+    }
+    .header-inner { max-width: 1100px; margin: 0 auto; }
+
+    .portfolio-nav {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 36px;
+    }
+    .portfolio-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 40px; padding: 6px 16px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #fff;
+    }
+    .portfolio-sep { color: rgba(255,255,255,0.50); font-size: 13px; }
+    .portfolio-current {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(255,255,255,0.60);
+    }
+
+    .header-sprint {
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(255,255,255,0.70);
+      margin-bottom: 14px;
+    }
+
+    .header-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 52px; font-weight: 800; line-height: 58px;
+      color: #fff; margin-bottom: 10px;
+    }
+    .header-title span { color: var(--ice-blue); }
+
+    .header-sub {
+      font-size: 14px; color: rgba(255,255,255,0.70); margin-bottom: 28px;
+    }
+
+    .goal-box {
+      display: inline-flex; align-items: flex-start; gap: 14px;
+      background: rgba(255,203,0,0.18); border: 1px solid rgba(255,203,0,0.40);
+      border-radius: 16px; padding: 16px 22px; max-width: 680px;
+    }
+    .goal-icon { color: var(--gold); font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+    .goal-label {
+      font-family: 'Raleway', sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+      display: block; margin-bottom: 5px;
+    }
+    .goal-text { font-size: 14px; line-height: 21px; color: rgba(255,255,255,0.85); }
+
+    /* ── PAGE SECTIONS ──────────────────────────────────── */
+    .section-wrap { padding: 64px 40px; }
+    .section-wrap.white  { background: #fff; }
+    .section-wrap.sky    { background: var(--sky-tint); }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--ocean-blue); margin-bottom: 10px;
+    }
+    .section-heading {
+      font-family: 'Raleway', sans-serif;
+      font-size: 45px; font-weight: 800; color: var(--charcoal);
+      line-height: 52px; margin-bottom: 32px;
+    }
+
+    /* ── TIME SUMMARY ───────────────────────────────────── */
+    .summary-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      margin-bottom: 24px;
+    }
+    .summary-card {
+      background: #fff; border: 1px solid rgba(34,116,164,0.15);
+      border-radius: 20px; padding: 28px;
+      box-shadow: 0 2px 12px rgba(34,116,164,0.08);
+    }
+    .summary-card .num {
+      font-family: 'Raleway', sans-serif;
+      font-size: 40px; font-weight: 800; line-height: 1;
+      margin-bottom: 10px;
+    }
+    .summary-card .num.red   { color: var(--red); }
+    .summary-card .num.gold  { color: #b8920a; }
+    .summary-card .num.blue  { color: var(--ocean-blue); }
+    .summary-card .finding {
+      font-size: 15px; font-weight: 600; color: var(--charcoal);
+      margin-bottom: 8px; line-height: 21px;
+    }
+    .summary-card .detail {
+      font-size: 13px; color: #666; line-height: 20px;
+    }
+
+    .audit-link-bar {
+      display: flex; align-items: center; justify-content: flex-end;
+    }
+    .audit-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--ocean-blue); border-radius: 40px; padding: 10px 22px;
+      font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 700;
+      color: #fff; text-decoration: none;
+    }
+    .audit-link:hover { background: #1a5f8a; text-decoration: none; }
+
+    /* ── AUTOMATION CARDS ───────────────────────────────── */
+    .auto-card {
+      background: #fff; border: 1px solid rgba(34,116,164,0.15);
+      border-radius: 20px; margin-bottom: 20px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(34,116,164,0.07);
+    }
+    .auto-card-top {
+      padding: 28px 28px 22px;
+      border-bottom: 1px solid rgba(34,116,164,0.10);
+    }
+    .auto-card-body { display: grid; grid-template-columns: 1fr 1fr; }
+    .auto-box { padding: 20px 26px; }
+    .auto-box:first-child { border-right: 1px solid rgba(34,116,164,0.10); }
+    .auto-box-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #999; margin-bottom: 8px;
+    }
+    .auto-box-text { font-size: 13px; color: #555; line-height: 20px; }
+
+    .auto-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
+    .auto-rank {
+      font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: #aaa;
+      margin-bottom: 6px;
+    }
+    .auto-title {
+      font-family: 'Raleway', sans-serif; font-size: 20px; font-weight: 800;
+      color: var(--charcoal); line-height: 26px;
+    }
+    .badge-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 2px; }
+
+    .badge {
+      padding: 4px 12px; border-radius: 40px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .b-quick  { background: #e8f7f0; color: var(--green); border: 1px solid #b8e4ce; }
+    .b-medium { background: #fef3e2; color: var(--orange); border: 1px solid #f5d28a; }
+    .b-big    { background: #fdecea; color: var(--red); border: 1px solid #f1b3ad; }
+    .b-hours  { background: var(--sky-tint); color: var(--ocean-blue); border: 1px solid #9acfe8; }
+    .b-status { background: #f5f5f5; color: #999; border: 1px solid #ddd; }
+
+    .auto-outcome {
+      background: var(--sky-tint); border-left: 4px solid var(--ocean-blue);
+      border-radius: 0 10px 10px 0; padding: 12px 16px;
+      font-size: 14px; font-weight: 600; color: var(--ocean-blue);
+      line-height: 21px; margin-top: 14px;
+    }
+
+    .rank-bar { height: 5px; }
+    .rank-bar.r1 { background: linear-gradient(90deg, #c0392b, #e67e22); }
+    .rank-bar.r2 { background: linear-gradient(90deg, #c0392b, #e67e22); }
+    .rank-bar.r3 { background: linear-gradient(90deg, var(--ocean-blue), var(--ice-blue)); }
+    .rank-bar.r4 { background: linear-gradient(90deg, var(--ocean-blue), var(--ice-blue)); }
+    .rank-bar.r5 { background: linear-gradient(90deg, var(--green), #7ed6a7); }
+    .rank-bar.r6 { background: linear-gradient(90deg, #b8920a, var(--gold)); }
+
+    /* ── MY SYSTEM ──────────────────────────────────────── */
+    .sprint-current {
+      background: var(--ocean-blue); border-radius: 20px;
+      padding: 28px 32px; margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .sprint-label {
+      font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.65);
+      margin-bottom: 4px;
+    }
+    .sprint-title {
+      font-family: 'Raleway', sans-serif; font-size: 22px; font-weight: 800;
+      color: #fff; margin-bottom: 4px;
+    }
+    .sprint-sub { font-size: 14px; color: rgba(255,255,255,0.75); }
+    .sprint-badge {
+      background: rgba(255,255,255,0.20); border: 1px solid rgba(255,255,255,0.40);
+      border-radius: 40px; padding: 8px 20px;
+      font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 700;
+      color: #fff; white-space: nowrap;
+    }
+
+    .sprint-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .sprint-placeholder {
+      background: #f9f9f9; border: 1px dashed #ccc;
+      border-radius: 20px; padding: 24px 18px;
+      text-align: center; opacity: 0.55;
+    }
+    .sprint-ph-icon { font-size: 22px; color: #bbb; margin-bottom: 12px; }
+    .sprint-ph-label {
+      font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: #bbb; margin-bottom: 8px;
+    }
+    .sprint-ph-title {
+      font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 700;
+      color: #aaa; line-height: 20px; margin-bottom: 12px;
+    }
+    .sprint-ph-coming {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: #ccc;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--near-black); padding: 28px 40px; text-align: center;
+    }
+    footer p { font-size: 13px; color: rgba(255,255,255,0.50); }
+    footer strong { color: var(--ice-blue); }
+
+    @media (max-width: 900px) {
+      .summary-grid { grid-template-columns: 1fr; }
+      .sprint-grid { grid-template-columns: repeat(2, 1fr); }
+      .auto-card-body { grid-template-columns: 1fr; }
+      .auto-box:first-child { border-right: none; border-bottom: 1px solid rgba(34,116,164,0.10); }
+      .header-title { font-size: 36px; line-height: 44px; }
+      .header, .section-wrap { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────────────────────────────── -->
+<header class="header">
+  <div class="header-inner">
+
+    <div class="portfolio-nav">
+      <span class="portfolio-pill"><i class="fas fa-layer-group"></i> AI Builder Automation Portfolio</span>
+      <span class="portfolio-sep">/</span>
+      <span class="portfolio-current">Sprint 1 Plan</span>
+    </div>
+
+    <div class="header-sprint">Sprint 1 &nbsp;·&nbsp; Apr 21, 2026</div>
+    <div class="header-title">Connor Moody's<br><span>Automation Plan</span></div>
+    <div class="header-sub">Lifetime HOA Management &nbsp;·&nbsp; Built in AI Builder L2</div>
+
+    <div class="goal-box">
+      <i class="fas fa-crosshairs goal-icon"></i>
+      <div>
+        <span class="goal-label">#1 Goal This Quarter</span>
+        <span class="goal-text">Set up operating norms — SOPs that embed AI into how the team works — so employees handle HOA communications, onboarding, and inquiries without constant escalation to me.</span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<div class="section-wrap white">
+<div class="section-inner">
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 1 — TIME SUMMARY
+       ═══════════════════════════════════════════════════════ -->
+  <section>
+    <div class="section-eyebrow">What the Data Says</div>
+    <div class="section-heading">3 Things I Learned from My Time Audit</div>
+
+    <div class="summary-grid">
+
+      <div class="summary-card">
+        <div class="num red">40%</div>
+        <div class="finding">Connor is the phone system's overflow valve</div>
+        <div class="detail">CA Sales answered 5 of 37 inbound calls on Apr 14. The missed calls come back as voicemails — which Connor personally forwards to his team. 5 voicemail emails sent in a single hour today. One unanswered call became a 5-day gap and a CEO escalation.</div>
+      </div>
+
+      <div class="summary-card">
+        <div class="num gold">12×</div>
+        <div class="finding">"Emails" appeared on the calendar as a to-do</div>
+        <div class="detail">In 3 weeks, "Emails" was self-scheduled 12 times. Reactive communication isn't contained — it runs the day. Connor is also the first routing hop for insurance claims, HR admin, escrow docs, and homeowner account issues before they reach the right person.</div>
+      </div>
+
+      <div class="summary-card">
+        <div class="num blue">6</div>
+        <div class="finding">Active sales prospects — with no automated onboarding pipeline</div>
+        <div class="detail">Las Mariannas, Lakewood Shores, Big Canyon, Mission Courts, Vista Bonita, Citrus Park. Each close adds 10+ manual steps that run through Connor. Summit Court: 5 doc iterations in 3 days. Paternity leave is coming — automation is a deadline, not a goal.</div>
+      </div>
+
+    </div>
+
+    <div class="audit-link-bar">
+      <a href="time-audit.html" class="audit-link">
+        <i class="fas fa-chart-bar"></i>
+        Full Time Audit
+        <i class="fas fa-arrow-right" style="font-size:11px"></i>
+      </a>
+    </div>
+  </section>
+
+</div></div>
+
+<div class="section-wrap sky">
+<div class="section-inner">
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 2 — WHAT I'M BUILDING
+       ═══════════════════════════════════════════════════════ -->
+  <section>
+    <div class="section-eyebrow">Sprint 1 Builds</div>
+    <div class="section-heading">What I'm Building</div>
+
+    <!-- Card 1 -->
+    <div class="auto-card">
+      <div class="rank-bar r1"></div>
+      <div class="auto-card-top">
+        <div class="auto-header">
+          <div>
+            <div class="auto-rank">Rank 1 &nbsp;·&nbsp; Highest Impact</div>
+            <div class="auto-title">Voicemails Route to the Right CM — Without Connor Touching Them</div>
+          </div>
+          <div class="badge-row" style="flex-direction:column;align-items:flex-end;">
+            <div class="badge-row">
+              <span class="badge b-quick">Quick Win</span>
+              <span class="badge b-hours">5–8 hrs/week</span>
+              <span class="badge b-status">Not Started</span>
+            </div>
+          </div>
+        </div>
+        <div class="auto-outcome">
+          A missed call leaves a voicemail. That voicemail is transcribed and routed directly to the right community manager — no Connor in the loop.
+        </div>
+      </div>
+      <div class="auto-card-body">
+        <div class="auto-box">
+          <div class="auto-box-label">What's Happening Today</div>
+          <div class="auto-box-text">Connor forwarded 5 Zoom voicemails in a single hour today. They arrive from the main line (Ext. 500) and land in his inbox as attachments. He reads, identifies the community, and forwards to the right person — every time.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">What the Automated Version Looks Like</div>
+          <div class="auto-box-text">Trigger: Zoom voicemail email arrives. Claude reads the transcription, identifies caller + community from number or name, routes directly to the correct CM with a summary. Unknown callers go to the support queue. Zero Connor involvement. Buildable in 2–3 hours.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="auto-card">
+      <div class="rank-bar r2"></div>
+      <div class="auto-card-top">
+        <div class="auto-header">
+          <div>
+            <div class="auto-rank">Rank 2</div>
+            <div class="auto-title">New Client Onboarding Runs Without Connor as a Checkpoint</div>
+          </div>
+          <div class="badge-row" style="flex-direction:column;align-items:flex-end;">
+            <div class="badge-row">
+              <span class="badge b-medium">Medium Lift</span>
+              <span class="badge b-hours">4–6 hrs / onboarding</span>
+              <span class="badge b-status">Not Started</span>
+            </div>
+          </div>
+        </div>
+        <div class="auto-outcome">
+          When a new community signs, the questionnaire, transition sheet, and welcome letter are generated and sent — automatically. Connor never touches a document.
+        </div>
+      </div>
+      <div class="auto-card-body">
+        <div class="auto-box">
+          <div class="auto-box-label">What's Happening Today</div>
+          <div class="auto-box-text">Summit Court: Questionnaire iterated twice in two days, Transition Sheet twice in one day, Welcome Letter revised — 5 doc touches for one client. Calendar shows "Vantaca/Onboarding Escalations" as a recurring personal task. Lakewood Shores is incoming now.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">What the Automated Version Looks Like</div>
+          <div class="auto-box-text">Trigger: new community added in Vantaca or HomeWiseDocs. Claude pulls community data, populates master templates (questionnaire, transition sheet, welcome letter). Community manager gets a draft for one-click review and send. Connor never sees it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="auto-card">
+      <div class="rank-bar r3"></div>
+      <div class="auto-card-top">
+        <div class="auto-header">
+          <div>
+            <div class="auto-rank">Rank 3</div>
+            <div class="auto-title">Homeowner Inquiries Get Drafted Responses — Team Just Approves</div>
+          </div>
+          <div class="badge-row" style="flex-direction:column;align-items:flex-end;">
+            <div class="badge-row">
+              <span class="badge b-medium">Medium Lift</span>
+              <span class="badge b-hours">5–7 hrs/week</span>
+              <span class="badge b-status">Not Started</span>
+            </div>
+          </div>
+        </div>
+        <div class="auto-outcome">
+          Every repetitive homeowner email has a drafted response waiting in the queue — staff reviews and hits send.
+        </div>
+      </div>
+      <div class="auto-card-body">
+        <div class="auto-box">
+          <div class="auto-box-label">What's Happening Today</div>
+          <div class="auto-box-text">Dues complaints, account issues, insurance questions, escrow requests — all landing in Connor's inbox first, then forwarded to the right person. Sent Items has 3,952 emails all-time. Each requires reading, categorizing, and routing before anyone can respond.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">What the Automated Version Looks Like</div>
+          <div class="auto-box-text">Trigger: inbound email to support inbox. Claude categorizes (dues / violation / maintenance / escrow), pulls Vantaca account data, drafts a response in the Lifetime voice. Team sees: Category · Draft · Approve or Edit. Connor removed from the loop entirely.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="auto-card">
+      <div class="rank-bar r4"></div>
+      <div class="auto-card-top">
+        <div class="auto-header">
+          <div>
+            <div class="auto-rank">Rank 4</div>
+            <div class="auto-title">Homeowner Calls Get Answered by AI on the First Ring</div>
+          </div>
+          <div class="badge-row" style="flex-direction:column;align-items:flex-end;">
+            <div class="badge-row">
+              <span class="badge b-big">Big Build</span>
+              <span class="badge b-hours">8–12 hrs/week</span>
+              <span class="badge b-status">Not Started</span>
+            </div>
+          </div>
+        </div>
+        <div class="auto-outcome">
+          CA Sales completes 80%+ of calls because an AI voice agent handles tier-1 questions before the call reaches a human or voicemail.
+        </div>
+      </div>
+      <div class="auto-card-body">
+        <div class="auto-box">
+          <div class="auto-box-label">What's Happening Today</div>
+          <div class="auto-box-text">CA Sales: 5 of 37 calls completed (13.5%). CA Vendors: 0%. Every missed call becomes a voicemail Connor routes manually. One missed intake at 23821 Hillhurst became a 5-day gap, an apology to an escrow agent, and a CEO escalation.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">What the Automated Version Looks Like</div>
+          <div class="auto-box-text">Trigger: inbound call to any queue. AI voice agent answers, pulls homeowner record from Vantaca by phone number, handles FAQs (dues balance, violation status, meeting dates, payment portal). Complex issues get a live transfer with a context summary ready.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="auto-card">
+      <div class="rank-bar r5"></div>
+      <div class="auto-card-top">
+        <div class="auto-header">
+          <div>
+            <div class="auto-rank">Rank 5 &nbsp;·&nbsp; Quick Win</div>
+            <div class="auto-title">Session Learning Converts to Employee SOPs Within 24 Hours</div>
+          </div>
+          <div class="badge-row" style="flex-direction:column;align-items:flex-end;">
+            <div class="badge-row">
+              <span class="badge b-quick">Quick Win</span>
+              <span class="badge b-hours">2–3 hrs/week</span>
+              <span class="badge b-status">Not Started</span>
+            </div>
+          </div>
+        </div>
+        <div class="auto-outcome">
+          Every Leland AI Builder session produces a Word-format employee SOP in SharePoint by the next morning — no writing time from Connor.
+        </div>
+      </div>
+      <div class="auto-card-body">
+        <div class="auto-box">
+          <div class="auto-box-label">What's Happening Today</div>
+          <div class="auto-box-text">Connor is in L1 + L2 simultaneously through May 8. Knowledge stays in his head after each session. The team (Pam, Brian, Kathy, Rebecca) can't act on it until Connor writes it up — which may not happen before paternity leave.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">What the Automated Version Looks Like</div>
+          <div class="auto-box-text">Trigger: upload session notes or recording transcript after each session. Claude converts to step-by-step employee SOP in M365 Word format, plain language. Saves to SharePoint automatically. "Automate Communication in Your Voice" becomes a usable guide the next day.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="auto-card">
+      <div class="rank-bar r6"></div>
+      <div class="auto-card-top">
+        <div class="auto-header">
+          <div>
+            <div class="auto-rank">Rank 6 &nbsp;·&nbsp; Quick Win</div>
+            <div class="auto-title">Weekly Phone + Email Ops Summary Lands in Inbox Automatically</div>
+          </div>
+          <div class="badge-row" style="flex-direction:column;align-items:flex-end;">
+            <div class="badge-row">
+              <span class="badge b-quick">Quick Win</span>
+              <span class="badge b-hours">1 hr/week</span>
+              <span class="badge b-status">Not Started</span>
+            </div>
+          </div>
+        </div>
+        <div class="auto-outcome">
+          Every Monday, call queue completion rates, voicemail volume, and top email patterns are waiting in Connor's inbox — no manual report pulling.
+        </div>
+      </div>
+      <div class="auto-card-body">
+        <div class="auto-box">
+          <div class="auto-box-label">What's Happening Today</div>
+          <div class="auto-box-text">Call queue data manually downloaded as a CSV. No automatic alerting means the CA Sales 13.5% completion rate could persist for weeks undetected. Community email volumes visible only by manually checking folder counts in Outlook.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">What the Automated Version Looks Like</div>
+          <div class="auto-box-text">Trigger: Monday 8am cron. Scheduled Claude agent pulls Zoom API for call queue metrics, checks email volumes by community folder, flags anything below threshold, emails a formatted summary. Setup time: under 2 hours using Claude Code + the schedule skill.</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</div></div>
+
+<div class="section-wrap white">
+<div class="section-inner">
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 3 — MY SYSTEM
+       ═══════════════════════════════════════════════════════ -->
+  <section>
+    <div class="section-eyebrow">Full Program</div>
+    <div class="section-heading">My System</div>
+
+    <!-- Current sprint callout -->
+    <div class="sprint-current">
+      <div class="sprint-current-left">
+        <div class="sprint-label">Now Building</div>
+        <div class="sprint-title">S1 — Automation Plan + Time Audit</div>
+        <div class="sprint-sub">Identify where time goes. Define what to automate. Build the plan.</div>
+      </div>
+      <span class="sprint-badge"><i class="fas fa-circle" style="font-size:8px;margin-right:6px;color:#4caf7d"></i> In Progress</span>
+    </div>
+
+    <!-- Future sprint placeholders -->
+    <div class="sprint-grid">
+
+      <div class="sprint-placeholder">
+        <div class="sprint-ph-icon"><i class="fas fa-globe"></i></div>
+        <div class="sprint-ph-label">S2</div>
+        <div class="sprint-ph-title">Deployed Website + Data Collection Tool</div>
+        <div class="sprint-ph-coming">Coming in Sprint 2</div>
+      </div>
+
+      <div class="sprint-placeholder">
+        <div class="sprint-ph-icon"><i class="fas fa-project-diagram"></i></div>
+        <div class="sprint-ph-label">S3</div>
+        <div class="sprint-ph-title">Automated n8n or Claude Routines Workflow</div>
+        <div class="sprint-ph-coming">Coming in Sprint 3</div>
+      </div>
+
+      <div class="sprint-placeholder">
+        <div class="sprint-ph-icon"><i class="fas fa-book"></i></div>
+        <div class="sprint-ph-label">S4</div>
+        <div class="sprint-ph-title">Knowledge Wiki Context System</div>
+        <div class="sprint-ph-coming">Coming in Sprint 4</div>
+      </div>
+
+      <div class="sprint-placeholder">
+        <div class="sprint-ph-icon"><i class="fas fa-robot"></i></div>
+        <div class="sprint-ph-label">S5</div>
+        <div class="sprint-ph-title">Custom Agentic Workflow</div>
+        <div class="sprint-ph-coming">Coming in Sprint 5</div>
+      </div>
+
+      <div class="sprint-placeholder">
+        <div class="sprint-ph-icon"><i class="fas fa-flask"></i></div>
+        <div class="sprint-ph-label">S6</div>
+        <div class="sprint-ph-title">Eval System — Tested and Documented</div>
+        <div class="sprint-ph-coming">Coming in Sprint 6</div>
+      </div>
+
+    </div>
+  </section>
+
+</div></div>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────────── -->
+<footer>
+  <p>AI Builder Automation Portfolio — <strong>April 21, 2026</strong> &nbsp;|&nbsp; Built in <strong>L2</strong></p>
+</footer>
+
+</body>
+</html>

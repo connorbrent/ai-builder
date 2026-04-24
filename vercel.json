@@ -1,5 +1,7 @@
 {
+  "outputDirectory": "public",
   "rewrites": [
+    { "source": "/api/roadmap", "destination": "/api/roadmap" },
     { "source": "/", "destination": "/ai-builder-dashboard.html" }
   ]
 }

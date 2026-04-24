@@ -1,0 +1,5 @@
+server.js
+.env.local
+.env
+.claude/
+node_modules/
