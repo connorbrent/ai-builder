@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automation Roadmap — Connor Moody</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    :root {
+      --ocean-blue: #2274A4;
+      --sky-tint: #D7F0FF;
+      --ice-blue: #A2DEF9;
+      --near-black: #141413;
+      --charcoal: #333333;
+      --gold: #FFCB00;
+      --green: #2e9e63;
+      --orange: #d47a1e;
+      --red: #c0392b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f4f6f8;
+      color: var(--charcoal);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 15px;
+      line-height: 22px;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    .header { background: var(--ocean-blue); padding: 48px 40px 42px; }
+    .header-inner { max-width: 1400px; margin: 0 auto; }
+
+    .portfolio-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+    .portfolio-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 40px; padding: 6px 16px;
+      font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; color: #fff; text-decoration: none;
+    }
+    .portfolio-pill:hover { background: rgba(255,255,255,0.22); }
+    .portfolio-sep { color: rgba(255,255,255,0.50); font-size: 13px; }
+    .portfolio-current { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.60); }
+
+    .header-sprint { font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.70); margin-bottom: 10px; }
+    .header-title { font-family: 'Raleway', sans-serif; font-size: 46px; font-weight: 800; line-height: 52px; color: #fff; margin-bottom: 8px; }
+    .header-title span { color: var(--ice-blue); }
+    .header-sub { font-size: 14px; color: rgba(255,255,255,0.70); }
+
+    /* ── SYNC STATUS ────────────────────────────────────── */
+    .sync-bar {
+      max-width: 1400px; margin: 0 auto;
+      padding: 10px 32px 0;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: #999;
+    }
+    .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: #ccc; flex-shrink: 0; }
+    .sync-dot.live { background: var(--green); }
+    .sync-dot.error { background: var(--red); }
+
+    /* ── BOARD WRAPPER ──────────────────────────────────── */
+    .board-outer { max-width: 1400px; margin: 0 auto; padding: 24px 32px 60px; }
+    .board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: start; }
+
+    /* ── COLUMN ─────────────────────────────────────────── */
+    .column { background: #eaecef; border-radius: 18px; padding: 18px 14px 18px; min-height: 500px; }
+    .column.suggested { background: #e8e9eb; opacity: 0.85; }
+
+    .col-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 0 4px; }
+    .col-title { font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+    .column.suggested   .col-title { color: #999; }
+    .column.to-build    .col-title { color: var(--charcoal); }
+    .column.in-progress .col-title { color: var(--ocean-blue); }
+    .column.done        .col-title { color: var(--green); }
+
+    .col-count { font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 700; background: rgba(0,0,0,0.10); border-radius: 40px; padding: 2px 10px; color: #666; }
+    .column.in-progress .col-count { background: rgba(34,116,164,0.15); color: var(--ocean-blue); }
+    .column.done .col-count        { background: rgba(46,158,99,0.15);  color: var(--green); }
+
+    .drop-zone { min-height: 60px; }
+    .drop-zone.drag-over { background: rgba(34,116,164,0.08); border-radius: 12px; outline: 2px dashed rgba(34,116,164,0.35); }
+
+    /* ── CARD ───────────────────────────────────────────── */
+    .card {
+      background: #fff; border-radius: 14px; padding: 16px 16px 14px; margin-bottom: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.05);
+      cursor: grab; transition: box-shadow 0.15s, transform 0.15s; user-select: none;
+    }
+    .card:active { cursor: grabbing; }
+    .card.dragging { opacity: 0.5; transform: rotate(1.5deg) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.16); }
+    .card:hover { box-shadow: 0 4px 14px rgba(34,116,164,0.15), 0 0 0 1px rgba(34,116,164,0.15); }
+    .card.saving { opacity: 0.6; }
+
+    .column.suggested .card { background: #f5f5f6; box-shadow: none; border: 1px solid #ddd; }
+    .column.done .card { opacity: 0.75; }
+    .column.done .card .card-name { text-decoration: line-through; color: #999; }
+
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .card-name { font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 800; color: var(--charcoal); line-height: 19px; flex: 1; padding-right: 10px; }
+    .priority-badge { flex-shrink: 0; padding: 3px 9px; border-radius: 40px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; }
+    .priority-high   { background: #fdecea; color: var(--red);    border: 1px solid #f1b3ad; }
+    .priority-medium { background: #fef3e2; color: var(--orange);  border: 1px solid #f5d28a; }
+    .priority-low    { background: #e8f7f0; color: var(--green);   border: 1px solid #b8e4ce; }
+    .card-desc { font-size: 12px; color: #777; line-height: 18px; }
+
+    .drag-placeholder { background: rgba(34,116,164,0.07); border: 2px dashed rgba(34,116,164,0.30); border-radius: 14px; margin-bottom: 10px; height: 80px; }
+
+    /* ── EMPTY / LOADING ────────────────────────────────── */
+    .empty-hint { text-align: center; padding: 32px 12px; color: #bbb; font-size: 12px; line-height: 18px; }
+    .empty-hint i { display: block; font-size: 22px; margin-bottom: 10px; color: #ccc; }
+    .loading-hint { text-align: center; padding: 48px 12px; color: #bbb; font-size: 12px; }
+    .loading-hint i { display: block; font-size: 20px; margin-bottom: 10px; color: #ccc; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer { background: var(--near-black); padding: 24px 40px; text-align: center; }
+    footer p { font-size: 13px; color: rgba(255,255,255,0.50); }
+    footer strong { color: var(--ice-blue); }
+
+    @media (max-width: 1000px) {
+      .board { grid-template-columns: repeat(2, 1fr); }
+      .header-title { font-size: 34px; line-height: 42px; }
+      .header, .board-outer { padding-left: 20px; padding-right: 20px; }
+    }
+    @media (max-width: 600px) { .board { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="portfolio-nav">
+      <a href="/ai-builder-plan.html" class="portfolio-pill"><i class="fas fa-layer-group"></i> AI Builder Automation Portfolio</a>
+      <span class="portfolio-sep">/</span>
+      <span class="portfolio-current">Roadmap Dashboard</span>
+    </div>
+    <div class="header-sprint">Sprint 1 &nbsp;·&nbsp; Apr 21, 2026</div>
+    <div class="header-title">Automation<br><span>Roadmap</span></div>
+    <div class="header-sub">Lifetime HOA Management &nbsp;·&nbsp; Live from Notion — drag cards to update status</div>
+  </div>
+</header>
+
+<div class="sync-bar">
+  <div class="sync-dot" id="sync-dot"></div>
+  <span id="sync-label">Connecting to Notion…</span>
+</div>
+
+<div class="board-outer">
+  <div class="board" id="board">
+
+    <div class="column suggested" data-col="suggested">
+      <div class="col-header">
+        <span class="col-title"><i class="fas fa-lightbulb" style="margin-right:6px;opacity:.5"></i>Suggested</span>
+        <span class="col-count" id="count-suggested">—</span>
+      </div>
+      <div class="drop-zone" id="zone-suggested">
+        <div class="loading-hint"><i class="fas fa-circle-notch"></i>Loading…</div>
+      </div>
+    </div>
+
+    <div class="column to-build" data-col="to-build">
+      <div class="col-header">
+        <span class="col-title"><i class="fas fa-list" style="margin-right:6px;opacity:.6"></i>To Build</span>
+        <span class="col-count" id="count-to-build">—</span>
+      </div>
+      <div class="drop-zone" id="zone-to-build">
+        <div class="loading-hint"><i class="fas fa-circle-notch"></i>Loading…</div>
+      </div>
+    </div>
+
+    <div class="column in-progress" data-col="in-progress">
+      <div class="col-header">
+        <span class="col-title"><i class="fas fa-circle" style="margin-right:6px;font-size:9px;color:#2274A4"></i>In Progress</span>
+        <span class="col-count" id="count-in-progress">—</span>
+      </div>
+      <div class="drop-zone" id="zone-in-progress">
+        <div class="loading-hint"><i class="fas fa-circle-notch"></i>Loading…</div>
+      </div>
+    </div>
+
+    <div class="column done" data-col="done">
+      <div class="col-header">
+        <span class="col-title"><i class="fas fa-check-circle" style="margin-right:6px;opacity:.7"></i>Done</span>
+        <span class="col-count" id="count-done">—</span>
+      </div>
+      <div class="drop-zone" id="zone-done">
+        <div class="loading-hint"><i class="fas fa-circle-notch"></i>Loading…</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>AI Builder Automation Portfolio — <strong>April 21, 2026</strong> &nbsp;|&nbsp; Built in <strong>L2</strong></p>
+</footer>
+
+<script>
+  const STATUS_TO_COL = {
+    'Suggested':   'suggested',
+    'To Build':    'to-build',
+    'In Progress': 'in-progress',
+    'Done':        'done'
+  };
+  const COL_TO_STATUS = {
+    'suggested':   'Suggested',
+    'to-build':    'To Build',
+    'in-progress': 'In Progress',
+    'done':        'Done'
+  };
+  const COLS = ['suggested', 'to-build', 'in-progress', 'done'];
+
+  const syncDot   = document.getElementById('sync-dot');
+  const syncLabel = document.getElementById('sync-label');
+
+  function setSyncState(state, msg) {
+    syncDot.className = 'sync-dot' + (state ? ' ' + state : '');
+    syncLabel.textContent = msg;
+  }
+
+  // ── API ───────────────────────────────────────────────
+  async function fetchCards() {
+    const res = await fetch('/api/roadmap');
+    if (!res.ok) throw new Error('API error ' + res.status);
+    return res.json();
+  }
+
+  async function patchStatus(id, status) {
+    const res = await fetch('/api/roadmap', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, status })
+    });
+    if (!res.ok) throw new Error('PATCH failed ' + res.status);
+  }
+
+  // ── RENDER ────────────────────────────────────────────
+  function makeCardEl(card) {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.draggable = true;
+    div.dataset.id = card.id;
+    const pc = (card.priority || '').toLowerCase();
+    const badge = pc ? `<span class="priority-badge priority-${pc}">${card.priority}</span>` : '';
+    div.innerHTML = `
+      <div class="card-top">
+        <div class="card-name">${card.name}</div>
+        ${badge}
+      </div>
+      <div class="card-desc">${card.description || ''}</div>
+    `;
+    return div;
+  }
+
+  function clearZone(zone) { zone.innerHTML = ''; }
+
+  function maybeAddEmptyHint(zone, col) {
+    if (!zone.querySelector('.card')) {
+      const hints = {
+        'suggested':   '<i class="fas fa-plus-circle"></i>Ideas from others will appear here',
+        'to-build':    '<i class="fas fa-inbox"></i>Nothing queued yet',
+        'in-progress': '<i class="fas fa-arrow-left"></i>Drag a card here when you start',
+        'done':        '<i class="fas fa-flag-checkered"></i>Finished automations land here'
+      };
+      const el = document.createElement('div');
+      el.className = 'empty-hint';
+      el.innerHTML = hints[col] || '';
+      zone.appendChild(el);
+    }
+  }
+
+  function updateCounts() {
+    for (const col of COLS) {
+      const n = document.getElementById('zone-' + col).querySelectorAll('.card').length;
+      document.getElementById('count-' + col).textContent = n;
+    }
+  }
+
+  async function render() {
+    setSyncState('', 'Connecting to Notion…');
+    try {
+      const cards = await fetchCards();
+      for (const col of COLS) clearZone(document.getElementById('zone-' + col));
+      for (const card of cards) {
+        const col = STATUS_TO_COL[card.status] || 'to-build';
+        const zone = document.getElementById('zone-' + col);
+        if (zone) zone.appendChild(makeCardEl(card));
+      }
+      for (const col of COLS) maybeAddEmptyHint(document.getElementById('zone-' + col), col);
+      updateCounts();
+      attachDrag();
+      setSyncState('live', `Live · ${cards.length} cards · ${new Date().toLocaleTimeString()}`);
+    } catch (err) {
+      setSyncState('error', 'Could not reach Notion — ' + err.message);
+      for (const col of COLS) {
+        const zone = document.getElementById('zone-' + col);
+        zone.innerHTML = `<div class="empty-hint"><i class="fas fa-exclamation-circle"></i>Failed to load</div>`;
+      }
+    }
+  }
+
+  // ── DRAG AND DROP ─────────────────────────────────────
+  let dragCard = null, placeholder = null, dragStartCol = null;
+
+  function attachDrag() {
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('dragstart', onDragStart);
+      card.addEventListener('dragend', onDragEnd);
+    });
+    document.querySelectorAll('.drop-zone').forEach(zone => {
+      zone.addEventListener('dragover', onDragOver);
+      zone.addEventListener('dragleave', onDragLeave);
+      zone.addEventListener('drop', onDrop);
+    });
+  }
+
+  function onDragStart(e) {
+    dragCard = this;
+    dragStartCol = this.closest('.drop-zone')?.id?.replace('zone-', '');
+    this.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', this.dataset.id);
+    placeholder = document.createElement('div');
+    placeholder.className = 'drag-placeholder';
+    placeholder.style.height = this.offsetHeight + 'px';
+  }
+
+  async function onDragEnd(e) {
+    const movedCard = dragCard;
+    const fromCol   = dragStartCol;
+
+    if (movedCard) movedCard.classList.remove('dragging');
+    if (placeholder?.parentNode) placeholder.parentNode.removeChild(placeholder);
+    document.querySelectorAll('.drop-zone').forEach(z => z.classList.remove('drag-over'));
+
+    // Detect new column and sync to Notion
+    const newZone = movedCard?.closest('.drop-zone');
+    const newCol  = newZone?.id?.replace('zone-', '');
+    if (movedCard && newCol && newCol !== fromCol) {
+      const newStatus = COL_TO_STATUS[newCol];
+      movedCard.classList.add('saving');
+      setSyncState('', 'Saving to Notion…');
+      try {
+        await patchStatus(movedCard.dataset.id, newStatus);
+        setSyncState('live', `Saved · ${new Date().toLocaleTimeString()}`);
+      } catch (err) {
+        setSyncState('error', 'Save failed — ' + err.message);
+      } finally {
+        movedCard.classList.remove('saving');
+      }
+    }
+
+    dragCard = null; placeholder = null; dragStartCol = null;
+    for (const col of COLS) maybeAddEmptyHint(document.getElementById('zone-' + col), col);
+    updateCounts();
+  }
+
+  function onDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    this.classList.add('drag-over');
+    this.querySelectorAll('.empty-hint').forEach(el => el.remove());
+    const afterEl = getDragAfterElement(this, e.clientY);
+    afterEl == null ? this.appendChild(placeholder) : this.insertBefore(placeholder, afterEl);
+  }
+
+  function onDragLeave(e) {
+    if (!this.contains(e.relatedTarget)) this.classList.remove('drag-over');
+  }
+
+  function onDrop(e) {
+    e.preventDefault();
+    this.classList.remove('drag-over');
+    if (!dragCard) return;
+    const afterEl = getDragAfterElement(this, e.clientY);
+    if (placeholder?.parentNode) placeholder.parentNode.removeChild(placeholder);
+    afterEl == null ? this.appendChild(dragCard) : this.insertBefore(dragCard, afterEl);
+  }
+
+  function getDragAfterElement(zone, y) {
+    return [...zone.querySelectorAll('.card:not(.dragging)')].reduce((closest, child) => {
+      const offset = y - child.getBoundingClientRect().top - child.getBoundingClientRect().height / 2;
+      return (offset < 0 && offset > closest.offset) ? { offset, element: child } : closest;
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+  }
+
+  // ── INIT ──────────────────────────────────────────────
+  render();
+</script>
+</body>
+</html>

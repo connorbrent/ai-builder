@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Audit — Connor Brent | AI Builder Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    :root {
+      --ocean-blue: #2274A4;
+      --ocean-blue-dim: rgba(34,116,164,0.15);
+      --ocean-blue-mid: rgba(34,116,164,0.30);
+      --sky-tint: #D7F0FF;
+      --ice-blue: #A2DEF9;
+      --near-black: #141413;
+      --card-bg: #1c1b1a;
+      --card-border: rgba(162,222,249,0.12);
+      --charcoal: #333333;
+      --gold: #FFCB00;
+      --gold-dim: rgba(255,203,0,0.15);
+      --text-primary: rgba(255,255,255,0.92);
+      --text-secondary: rgba(255,255,255,0.55);
+      --red: #e05252;
+      --red-dim: rgba(224,82,82,0.15);
+      --green: #4caf7d;
+      --green-dim: rgba(76,175,125,0.15);
+      --orange: #f0903a;
+      --orange-dim: rgba(240,144,58,0.15);
+      --purple: #9b6fd4;
+      --purple-dim: rgba(155,111,212,0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--near-black);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Raleway', sans-serif; }
+    h1 { font-size: 19px; font-weight: 700; letter-spacing: 1.5px; }
+    h2 { font-size: 36px; font-weight: 800; line-height: 44px; color: var(--ice-blue); }
+    h3 { font-size: 20px; font-weight: 700; line-height: 26px; color: var(--ice-blue); }
+    h4 { font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-secondary); }
+
+    a { color: var(--ice-blue); text-decoration: none; }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    .header {
+      background: linear-gradient(135deg, #0d1a26 0%, #1a2e42 100%);
+      border-bottom: 1px solid var(--ocean-blue-mid);
+      padding: 48px 40px 40px;
+    }
+    .header-inner { max-width: 1100px; margin: 0 auto; }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--ocean-blue-dim); border: 1px solid var(--ocean-blue);
+      border-radius: 40px; padding: 6px 16px;
+      font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--ice-blue); margin-bottom: 20px;
+    }
+    .header-name {
+      font-family: 'Raleway', sans-serif; font-size: 42px; font-weight: 800;
+      color: #fff; margin-bottom: 8px;
+    }
+    .header-meta { color: var(--text-secondary); font-size: 14px; margin-bottom: 24px; }
+    .header-goal {
+      background: var(--gold-dim); border-left: 3px solid var(--gold);
+      border-radius: 0 12px 12px 0; padding: 14px 20px; max-width: 700px; font-size: 15px;
+    }
+    .header-goal strong {
+      color: var(--gold); font-family: 'Raleway', sans-serif; font-size: 11px;
+      letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 6px;
+    }
+
+    /* ── URGENT BANNER ──────────────────────────────────── */
+    .urgent-bar {
+      background: rgba(224,82,82,0.12);
+      border-bottom: 1px solid rgba(224,82,82,0.3);
+      padding: 12px 40px;
+    }
+    .urgent-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .urgent-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--red); white-space: nowrap;
+    }
+    .urgent-text { font-size: 13px; color: rgba(255,255,255,0.75); }
+    .urgent-text strong { color: var(--red); }
+
+    /* ── DATA COVERAGE BANNER ───────────────────────────── */
+    .coverage-bar {
+      background: rgba(240,144,58,0.06);
+      border-bottom: 1px solid rgba(240,144,58,0.15);
+      padding: 10px 40px;
+    }
+    .coverage-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .coverage-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--orange); white-space: nowrap;
+    }
+    .coverage-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 10px; border-radius: 40px; font-size: 11px; font-weight: 600;
+    }
+    .tag-ok { background: var(--green-dim); color: var(--green); border: 1px solid rgba(76,175,125,0.3); }
+    .tag-partial { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(240,144,58,0.3); }
+    .tag-missing { background: var(--red-dim); color: var(--red); border: 1px solid rgba(224,82,82,0.3); }
+
+    /* ── LAYOUT ─────────────────────────────────────────── */
+    .page { max-width: 1100px; margin: 0 auto; padding: 48px 40px 80px; }
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--ocean-blue); margin-bottom: 10px;
+    }
+    .section-title { margin-bottom: 32px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 20px; padding: 24px;
+    }
+    .card-title {
+      font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase; color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    section { margin-bottom: 60px; }
+
+    /* ── STAT BLOCKS ────────────────────────────────────── */
+    .stat-block {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 20px; padding: 28px 24px; text-align: center;
+    }
+    .stat-num {
+      font-family: 'Raleway', sans-serif; font-size: 42px; font-weight: 800;
+      color: var(--ice-blue); line-height: 1; margin-bottom: 6px;
+    }
+    .stat-num.red { color: var(--red); }
+    .stat-num.gold { color: var(--gold); }
+    .stat-num.green { color: var(--green); }
+    .stat-num.orange { color: var(--orange); }
+    .stat-label { font-size: 13px; color: var(--text-secondary); line-height: 18px; }
+
+    /* ── PHONE TABLE ────────────────────────────────────── */
+    .queue-table { width: 100%; border-collapse: collapse; }
+    .queue-table th {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--text-secondary); padding: 10px 14px; text-align: left;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .queue-table td { padding: 12px 14px; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .queue-table tr:last-child td { border-bottom: none; }
+    .rate-bad { color: var(--red); font-weight: 700; font-family: 'Raleway', sans-serif; }
+    .rate-ok { color: var(--green); font-weight: 700; font-family: 'Raleway', sans-serif; }
+    .rate-warn { color: var(--orange); font-weight: 700; font-family: 'Raleway', sans-serif; }
+    .progress-bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; margin-top: 6px; }
+    .progress-fill { height: 100%; border-radius: 4px; }
+    .fill-green { background: var(--green); }
+    .fill-red { background: var(--red); }
+    .fill-orange { background: var(--orange); }
+    .fill-blue { background: var(--ocean-blue); }
+    .fill-gold { background: var(--gold); }
+
+    /* ── EMAIL PATTERNS ─────────────────────────────────── */
+    .email-item {
+      padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .email-item:last-child { border-bottom: none; }
+    .email-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 12px;
+    }
+    .email-icon.red { background: var(--red-dim); color: var(--red); }
+    .email-icon.orange { background: var(--orange-dim); color: var(--orange); }
+    .email-icon.blue { background: var(--ocean-blue-dim); color: var(--ice-blue); }
+    .email-icon.gold { background: var(--gold-dim); color: var(--gold); }
+    .email-subject { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+    .email-detail { font-size: 12px; color: var(--text-secondary); line-height: 18px; }
+    .email-tag {
+      padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; margin-left: auto; flex-shrink: 0;
+    }
+    .etag-fw { background: var(--red-dim); color: var(--red); border: 1px solid rgba(224,82,82,0.3); }
+    .etag-sales { background: var(--green-dim); color: var(--green); border: 1px solid rgba(76,175,125,0.3); }
+    .etag-ops { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(240,144,58,0.3); }
+    .etag-ai { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(155,111,212,0.3); }
+
+    /* ── CALENDAR TASKS ─────────────────────────────────── */
+    .cal-task {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .cal-task:last-child { border-bottom: none; }
+    .cal-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .cal-dot.red { background: var(--red); }
+    .cal-dot.orange { background: var(--orange); }
+    .cal-dot.blue { background: var(--ocean-blue); }
+    .cal-dot.green { background: var(--green); }
+    .cal-dot.gold { background: var(--gold); }
+    .cal-task-text { font-size: 13px; flex: 1; color: var(--text-primary); }
+    .cal-task-date { font-size: 11px; color: var(--text-secondary); white-space: nowrap; }
+    .cal-count {
+      padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 700;
+      background: var(--red-dim); color: var(--red); border: 1px solid rgba(224,82,82,0.2);
+    }
+
+    /* ── COMMUNITY FOLDERS ──────────────────────────────── */
+    .folder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .folder-item {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 12px 14px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .folder-name { font-size: 13px; color: var(--text-primary); }
+    .folder-count {
+      font-family: 'Raleway', sans-serif; font-size: 16px; font-weight: 700;
+      color: var(--ice-blue);
+    }
+
+    /* ── OBSERVATIONS ───────────────────────────────────── */
+    .obs-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 20px; padding: 28px; border-left-width: 3px; margin-bottom: 16px;
+    }
+    .obs-card.red { border-left-color: var(--red); }
+    .obs-card.gold { border-left-color: var(--gold); }
+    .obs-card.blue { border-left-color: var(--ocean-blue); }
+    .obs-card.purple { border-left-color: var(--purple); }
+    .obs-num {
+      font-family: 'Raleway', sans-serif; font-size: 36px; font-weight: 800;
+      color: var(--text-secondary); opacity: 0.3; float: right; line-height: 1;
+    }
+    .obs-title {
+      font-family: 'Raleway', sans-serif; font-size: 17px; font-weight: 700;
+      margin-bottom: 10px; color: var(--text-primary);
+    }
+    .obs-body { font-size: 14px; line-height: 22px; color: rgba(255,255,255,0.7); }
+    .obs-body strong { color: var(--text-primary); }
+
+    /* ── GOAL ALIGNMENT ─────────────────────────────────── */
+    .goal-row {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 20px 24px;
+      display: grid; grid-template-columns: 1fr auto; gap: 20px;
+      align-items: start; margin-bottom: 12px;
+    }
+    .goal-name { font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+    .goal-status { font-size: 13px; color: var(--text-secondary); line-height: 20px; }
+    .goal-badge { padding: 4px 12px; border-radius: 40px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; }
+    .badge-active { background: var(--green-dim); color: var(--green); border: 1px solid rgba(76,175,125,0.3); }
+    .badge-gap { background: var(--red-dim); color: var(--red); border: 1px solid rgba(224,82,82,0.3); }
+    .badge-partial { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(240,144,58,0.3); }
+    .badge-urgent { background: rgba(224,82,82,0.25); color: var(--red); border: 2px solid var(--red); }
+
+    /* ── AUTOMATION CARDS ───────────────────────────────── */
+    .auto-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 20px; padding: 28px; margin-bottom: 16px;
+      position: relative; overflow: hidden;
+    }
+    .auto-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      border-radius: 20px 20px 0 0;
+    }
+    .auto-card.rank-1::before { background: linear-gradient(90deg, var(--red), var(--orange)); }
+    .auto-card.rank-2::before { background: linear-gradient(90deg, var(--red), var(--orange)); }
+    .auto-card.rank-3::before { background: linear-gradient(90deg, var(--ocean-blue), var(--ice-blue)); }
+    .auto-card.rank-4::before { background: linear-gradient(90deg, var(--ocean-blue), var(--ice-blue)); }
+    .auto-card.rank-5::before { background: linear-gradient(90deg, var(--green), #a2f9c4); }
+    .auto-card.rank-6::before { background: linear-gradient(90deg, var(--gold), #fff3a0); }
+
+    .auto-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; gap: 16px; }
+    .auto-rank { font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px; }
+    .auto-title { font-family: 'Raleway', sans-serif; font-size: 19px; font-weight: 800; color: var(--text-primary); }
+    .auto-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+    .auto-badge { padding: 4px 12px; border-radius: 40px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; }
+    .effort-quick { background: var(--green-dim); color: var(--green); border: 1px solid rgba(76,175,125,0.3); }
+    .effort-medium { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(240,144,58,0.3); }
+    .effort-big { background: var(--red-dim); color: var(--red); border: 1px solid rgba(224,82,82,0.3); }
+    .hours-badge { background: rgba(34,116,164,0.2); color: var(--ice-blue); border: 1px solid rgba(34,116,164,0.4); }
+    .urgent-badge { background: rgba(224,82,82,0.2); color: var(--red); border: 2px solid var(--red); }
+
+    .auto-outcome {
+      background: var(--ocean-blue-dim); border-left: 2px solid var(--ocean-blue);
+      border-radius: 0 8px 8px 0; padding: 12px 16px;
+      font-size: 15px; font-weight: 600; color: var(--ice-blue); margin-bottom: 16px;
+    }
+    .auto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px; }
+    .auto-box {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 14px;
+    }
+    .auto-box-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px; }
+    .auto-box-text { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 20px; }
+    .draft-note { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.2); text-align: right; margin-top: 16px; }
+
+    /* ── DATA SOURCES ───────────────────────────────────── */
+    .source-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .source-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 18px; }
+    .source-card .status { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .source-card .source-name { font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+    .source-card .source-detail { font-size: 12px; color: var(--text-secondary); line-height: 18px; }
+    .status.ok { color: var(--green); }
+    .status.partial { color: var(--orange); }
+    .status.missing { color: var(--red); }
+
+    .divider { border: none; border-top: 1px solid var(--card-border); margin: 48px 0; }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    .footer { background: #0d0d0c; border-top: 1px solid var(--card-border); padding: 24px 40px; text-align: center; }
+    .footer p { font-size: 13px; color: var(--text-secondary); }
+    .footer strong { color: var(--ocean-blue); }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3, .grid-4, .auto-grid, .source-grid, .folder-grid { grid-template-columns: 1fr; }
+      .header, .page { padding-left: 20px; padding-right: 20px; }
+      h2 { font-size: 28px; }
+      .header-name { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────────────────────────────── -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-badge"><i class="fas fa-chart-bar"></i> AI Builder Automation Portfolio</div>
+    <div class="header-name">Connor Brent</div>
+    <div class="header-meta">Lifetime HOA Management &nbsp;·&nbsp; Time Audit &nbsp;·&nbsp; April 21, 2026</div>
+    <div class="header-goal">
+      <strong>Top Goal This Quarter</strong>
+      Set up operating norms — SOPs that embed AI into how the team works — so employees handle HOA communications, onboarding, and inquiries without constant escalation to me.
+    </div>
+  </div>
+</header>
+
+<!-- ── URGENT BANNER ───────────────────────────────────────────────────── -->
+<div class="urgent-bar">
+  <div class="urgent-inner">
+    <span class="urgent-label"><i class="fas fa-exclamation-triangle"></i>&nbsp; Urgent Context</span>
+    <span class="urgent-text"><strong>Paternity leave is coming.</strong> "Connor File for Paternity Leave" appeared on Apr 3's calendar. Every manual routing task, voicemail forward, and escalation that runs through Connor today is a risk when he's out. Automation isn't a goal — it's a deadline.</span>
+  </div>
+</div>
+
+<!-- ── DATA COVERAGE ────────────────────────────────────────────────────── -->
+<div class="coverage-bar">
+  <div class="coverage-inner">
+    <span class="coverage-label">Sources</span>
+    <span class="coverage-tag tag-ok"><i class="fas fa-check"></i> Outlook Email (Apr 21, 30 days)</span>
+    <span class="coverage-tag tag-ok"><i class="fas fa-check"></i> Outlook Calendar (Apr 1–21)</span>
+    <span class="coverage-tag tag-ok"><i class="fas fa-check"></i> Downloads (Apr 10–21)</span>
+    <span class="coverage-tag tag-ok"><i class="fas fa-check"></i> Zoom Call Queue (Apr 14)</span>
+    <span class="coverage-tag tag-ok"><i class="fas fa-check"></i> AI Builder Calendars (ICS)</span>
+    <span class="coverage-tag tag-partial"><i class="fas fa-exclamation"></i> Screen Time (needs Full Disk Access)</span>
+    <span class="coverage-tag tag-missing"><i class="fas fa-times"></i> Safari history (needs Full Disk Access)</span>
+  </div>
+</div>
+
+<main class="page">
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 1 — HOW I ACTUALLY SPEND MY TIME
+       ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="section-label">Section 1</div>
+    <h2 class="section-title">How I Actually Spend My Time</h2>
+
+    <!-- Email Patterns Today -->
+    <div class="card" style="margin-bottom: 20px;">
+      <div class="card-title">📧 Email — Apr 21 Sent & Received (real thread subjects)</div>
+      <div class="grid-2" style="gap: 0;">
+        <div style="padding-right: 20px; border-right: 1px solid var(--card-border);">
+          <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:12px;">Connor Sent (today)</div>
+          <div class="email-item">
+            <div class="email-icon red"><i class="fas fa-phone"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">FW: New Voicemail from AMIR LAJEVARDI</div>
+              <div class="email-detail">+4 more voicemail forwards today — manually routing Zoom voicemails to team</div>
+            </div>
+            <span class="email-tag etag-fw">Routing</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon red"><i class="fas fa-exclamation"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">FW: New Owner — 23821 Hillhurst #16</div>
+              <div class="email-detail">"New owner still hasn't received any information from Lifetime." Escalated to CEO + VP Finance — 4 email touches on one issue</div>
+            </div>
+            <span class="email-tag etag-fw">Escalation</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon red"><i class="fas fa-forward"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">FW: 24583 Via Alfredo Account — URGENT</div>
+              <div class="email-detail">Homeowner dues issue, forwarded to team</div>
+            </div>
+            <span class="email-tag etag-fw">Routing</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon orange"><i class="fas fa-shield-alt"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">FW: Rossmoor Chateau — Farmer's Insurance Claim</div>
+              <div class="email-detail">"Not sure if we need to do anything... I'll include you here" — routed to Rebecca + Pam</div>
+            </div>
+            <span class="email-tag etag-fw">Routing</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon orange"><i class="fas fa-home"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">Re: Needed docs for Rossmoor Chateau 5/31/23</div>
+              <div class="email-detail">Introducing Kathy (CM) as the right contact — removing himself from loop</div>
+            </div>
+            <span class="email-tag etag-ops">Handoff</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon blue"><i class="fas fa-handshake"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">Re: Las Mariannas HOA, Dana Point RFP</div>
+              <div class="email-detail">"I'm looking forward to it!" — meeting confirmed for Wednesday</div>
+            </div>
+            <span class="email-tag etag-sales">Sales</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon blue"><i class="fas fa-calendar"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">Big Canyon Townhomes Sales Meeting</div>
+              <div class="email-detail">Calendar/meeting invite sent — active sales prospect</div>
+            </div>
+            <span class="email-tag etag-sales">Sales</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon gold"><i class="fas fa-robot"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">FW: Starting in 5 minutes — Claude Code session</div>
+              <div class="email-detail">Forwarding Leland AI Builder session reminder to team</div>
+            </div>
+            <span class="email-tag etag-ai">AI</span>
+          </div>
+        </div>
+        <div style="padding-left: 20px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:12px;">Connor Received (today)</div>
+          <div class="email-item">
+            <div class="email-icon red"><i class="fas fa-phone"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">New Voicemail from ROBERT WILSON to Kathy (Ext. 104)</div>
+              <div class="email-detail">Voicemails to team extensions landing in Connor's inbox</div>
+            </div>
+            <span class="email-tag etag-fw">Misrouted</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon red"><i class="fas fa-exclamation-triangle"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">***URGENT*** HWD LSQ Order — Summit Court due TODAY</div>
+              <div class="email-detail">HomeWiseDocs escrow docs request, due today — new client still in setup</div>
+            </div>
+            <span class="email-tag etag-ops">Ops</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon orange"><i class="fas fa-user-plus"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">Lakewood Shores Introduction</div>
+              <div class="email-detail">"Thanks for your patience as our board navigates... transition of management companies" — new client incoming</div>
+            </div>
+            <span class="email-tag etag-sales">New Client</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon orange"><i class="fas fa-dollar-sign"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">Fw: Work Meal reimbursements</div>
+              <div class="email-detail">David asking Connor to "load Shawn into Gusto and process these" — HR admin landing on Connor</div>
+            </div>
+            <span class="email-tag etag-fw">HR Admin</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon blue"><i class="fas fa-building"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">Casitas Capistrano Added to HomeWiseDocs</div>
+              <div class="email-detail">New community setup triggering onboarding workflow steps</div>
+            </div>
+            <span class="email-tag etag-ops">Onboarding</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon gold"><i class="fas fa-credit-card"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">Anthropic Receipt + Slack Pro Trial Started</div>
+              <div class="email-detail">AI tools spend — Claude + Slack Pro started today (first day of Slack)</div>
+            </div>
+            <span class="email-tag etag-ai">AI/Tools</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon blue"><i class="fas fa-handshake"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">Re: Las Mariannas HOA — Ryan Phillips (Compass) confirmed</div>
+              <div class="email-detail">Board president + Compass rep in person Wednesday 9am</div>
+            </div>
+            <span class="email-tag etag-sales">Sales</span>
+          </div>
+          <div class="email-item">
+            <div class="email-icon blue"><i class="fas fa-search"></i></div>
+            <div style="flex:1">
+              <div class="email-subject">SEMRush Trial On + Google Analytics Integration</div>
+              <div class="email-detail">Marketing tools — SEMRush SEO Pro & Local active</div>
+            </div>
+            <span class="email-tag etag-ops">Marketing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Community Email Volumes + Calendar Tasks -->
+    <div class="grid-2" style="margin-bottom: 20px;">
+      <div class="card">
+        <div class="card-title">📂 Email Volume by Community (all-time folder totals)</div>
+        <div class="folder-grid">
+          <div class="folder-item"><span class="folder-name">Summit Court</span><span class="folder-count">56</span></div>
+          <div class="folder-item"><span class="folder-name">Rossmoor Chateau</span><span class="folder-count">52</span></div>
+          <div class="folder-item"><span class="folder-name">Casitas Capistrano</span><span class="folder-count">45</span></div>
+          <div class="folder-item"><span class="folder-name">Sunny Ridge</span><span class="folder-count">40</span></div>
+          <div class="folder-item"><span class="folder-name">Touchstone</span><span class="folder-count">31</span></div>
+          <div class="folder-item"><span class="folder-name">Via del Lago</span><span class="folder-count">26</span></div>
+          <div class="folder-item"><span class="folder-name">Mira Vista</span><span class="folder-count">19</span></div>
+          <div class="folder-item"><span class="folder-name">Stonehurst</span><span class="folder-count">16</span></div>
+          <div class="folder-item"><span class="folder-name">Costa Brava</span><span class="folder-count">3</span></div>
+        </div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--card-border);">
+          <div style="font-size:12px;color:var(--text-secondary)">Other active folders: Partner Discussions (33), Transitions/Onboarding (14), Homewise (22), Website (48), Sent Items (3,952 total)</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">📅 Calendar — Apr 1–21: What's on the Schedule</div>
+        <div class="cal-task">
+          <div class="cal-dot red"></div>
+          <div class="cal-task-text">"Emails" — recurring personal to-do block</div>
+          <span class="cal-count">12× in 3 weeks</span>
+        </div>
+        <div class="cal-task">
+          <div class="cal-dot red"></div>
+          <div class="cal-task-text">Vantaca/Onboarding Escalations</div>
+          <div class="cal-task-date">Apr 1</div>
+        </div>
+        <div class="cal-task">
+          <div class="cal-dot orange"></div>
+          <div class="cal-task-text">Homewise Order for Sunny Ridge</div>
+          <div class="cal-task-date">Apr 1</div>
+        </div>
+        <div class="cal-task">
+          <div class="cal-dot orange"></div>
+          <div class="cal-task-text">EOM Finances · Payroll</div>
+          <div class="cal-task-date">Apr 2</div>
+        </div>
+        <div class="cal-task">
+          <div class="cal-dot blue"></div>
+          <div class="cal-task-text">New Community Briefing (6 att.)</div>
+          <div class="cal-task-date">Apr 2</div>
+        </div>
+        <div class="cal-task">
+          <div class="cal-dot orange"></div>
+          <div class="cal-task-text">Set Up Office for Pam · Onboard Pam</div>
+          <div class="cal-task-date">Apr 2–6</div>
+        </div>
+        <div class="cal-task">
+          <div class="cal-dot red"></div>
+          <div class="cal-task-text">Connor File for Paternity Leave ⚠️</div>
+          <div class="cal-task-date">Apr 3</div>
+        </div>
+        <div class="cal-task">
+          <div class="cal-dot blue"></div>
+          <div class="cal-task-text">Sales Meeting (7 att.) · Check-in CA (8 att.)</div>
+          <div class="cal-task-date">Apr 6</div>
+        </div>
+        <div class="cal-task">
+          <div class="cal-dot blue"></div>
+          <div class="cal-task-text">Lifetime/Lifetime West Weekly Roundtable (6 att.)</div>
+          <div class="cal-task-date">Apr 6</div>
+        </div>
+        <div class="cal-task">
+          <div class="cal-dot orange"></div>
+          <div class="cal-task-text">Pay Dianna (PH) · Change Mailing Address (all biz)</div>
+          <div class="cal-task-date">Apr 10</div>
+        </div>
+        <div class="cal-task">
+          <div class="cal-dot blue"></div>
+          <div class="cal-task-text">Sales Meeting (7 att.)</div>
+          <div class="cal-task-date">Apr 13</div>
+        </div>
+        <div class="cal-task">
+          <div class="cal-dot gold"></div>
+          <div class="cal-task-text">Website Review: AZ, CO, CA · LinkedIn Online Presence</div>
+          <div class="cal-task-date">Apr 13</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone Data -->
+    <div class="card" style="margin-bottom: 20px;">
+      <div class="card-title">📞 Zoom Phone — Call Queue Snapshot (Apr 14)</div>
+      <table class="queue-table">
+        <thead>
+          <tr><th>Queue</th><th>Inbound</th><th>Completed</th><th>Abandoned</th><th>Overflow</th><th>Completion Rate</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>CA Support</strong><br><span style="font-size:12px;color:var(--text-secondary)">Ext. 520</span></td>
+            <td>97</td><td><span class="rate-warn">52</span></td><td>17</td><td>28</td>
+            <td><span class="rate-warn">54%</span><div class="progress-bar"><div class="progress-fill fill-orange" style="width:54%"></div></div></td>
+          </tr>
+          <tr>
+            <td><strong>CA Sales</strong><br><span style="font-size:12px;color:var(--text-secondary)">Ext. 510</span></td>
+            <td>37</td><td><span class="rate-bad">5</span></td><td>6</td><td>26</td>
+            <td><span class="rate-bad">13.5%</span><div class="progress-bar"><div class="progress-fill fill-red" style="width:14%"></div></div></td>
+          </tr>
+          <tr>
+            <td><strong>CA Vendors</strong><br><span style="font-size:12px;color:var(--text-secondary)">Ext. 530</span></td>
+            <td>10</td><td><span class="rate-bad">0</span></td><td>4</td><td>6</td>
+            <td><span class="rate-bad">0%</span><div class="progress-bar"><div class="progress-fill fill-red" style="width:1%"></div></div></td>
+          </tr>
+          <tr style="background: rgba(255,255,255,0.03);">
+            <td><strong>Total</strong></td><td><strong>144</strong></td><td><strong>57</strong></td><td><strong>27</strong></td><td><strong>60</strong></td>
+            <td><span class="rate-bad" style="font-size:18px">40%</span><div class="progress-bar" style="height:10px"><div class="progress-fill fill-red" style="width:40%"></div></div></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:13px;color:var(--text-secondary);margin-top:16px;">
+        <i class="fas fa-info-circle" style="color:var(--ocean-blue)"></i>&nbsp;
+        Voicemails from these missed calls are landing in Connor's inbox as forwarded emails — confirmed by 5 voicemail-forward emails in today's sent mail alone.
+      </p>
+    </div>
+
+    <!-- Active Sales Pipeline -->
+    <div class="card">
+      <div class="card-title">💼 Active Sales Pipeline (from email, Apr 20–21)</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+        <div style="background:var(--green-dim);border:1px solid rgba(76,175,125,0.2);border-radius:12px;padding:14px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:6px;">Warm — Meeting Set</div>
+          <div style="font-size:14px;font-weight:600;">Las Mariannas HOA<br><span style="font-size:12px;font-weight:400;color:var(--text-secondary)">Dana Point — RFP, meeting Wed w/ board + Compass</span></div>
+        </div>
+        <div style="background:var(--green-dim);border:1px solid rgba(76,175,125,0.2);border-radius:12px;padding:14px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:6px;">Incoming Transition</div>
+          <div style="font-size:14px;font-weight:600;">Lakewood Shores<br><span style="font-size:12px;font-weight:400;color:var(--text-secondary)">Board navigating mgmt transition — introduction received</span></div>
+        </div>
+        <div style="background:var(--ocean-blue-dim);border:1px solid var(--ocean-blue-mid);border-radius:12px;padding:14px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ice-blue);margin-bottom:6px;">Meeting Scheduled</div>
+          <div style="font-size:14px;font-weight:600;">Big Canyon Townhomes<br><span style="font-size:12px;font-weight:400;color:var(--text-secondary)">Sales meeting — calendar invite sent</span></div>
+        </div>
+        <div style="background:var(--ocean-blue-dim);border:1px solid var(--ocean-blue-mid);border-radius:12px;padding:14px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ice-blue);margin-bottom:6px;">RFP Follow-Up</div>
+          <div style="font-size:14px;font-weight:600;">Mission Courts One Condos<br><span style="font-size:12px;font-weight:400;color:var(--text-secondary)">Brian following up on bid timeline</span></div>
+        </div>
+        <div style="background:var(--orange-dim);border:1px solid rgba(240,144,58,0.2);border-radius:12px;padding:14px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--orange);margin-bottom:6px;">AZ — Contract Sent</div>
+          <div style="font-size:14px;font-weight:600;">Vista Bonita<br><span style="font-size:12px;font-weight:400;color:var(--text-secondary)">Shawn sent management contract — waiting on signature</span></div>
+        </div>
+        <div style="background:var(--orange-dim);border:1px solid rgba(240,144,58,0.2);border-radius:12px;padding:14px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--orange);margin-bottom:6px;">AZ — Bids Updated</div>
+          <div style="font-size:14px;font-weight:600;">Citrus Park & Villas<br><span style="font-size:12px;font-weight:400;color:var(--text-secondary)">Shawn sent updated bids "more of what you were looking for"</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 2 — KEY DIAGNOSTICS
+       ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="section-label">Section 2</div>
+    <h2 class="section-title">Key Diagnostics</h2>
+
+    <div class="grid-4" style="margin-bottom: 24px;">
+      <div class="stat-block">
+        <div class="stat-num red">40%</div>
+        <div class="stat-label">Phone call completion rate<br>(144 inbound, Apr 14)</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num orange">12×</div>
+        <div class="stat-label">"Emails" on calendar as a to-do<br>(3 weeks — reactive, not planned)</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num red">5</div>
+        <div class="stat-label">Voicemail emails forwarded<br>by Connor personally — today alone</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num gold">6</div>
+        <div class="stat-label">Active sales prospects<br>in pipeline right now</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Top 3 Time Drains — Named Specifically</div>
+        <div style="margin-bottom: 16px; padding: 14px; background: var(--red-dim); border-radius: 12px; border: 1px solid rgba(224,82,82,0.2);">
+          <div style="font-weight: 700; color: var(--red); margin-bottom: 4px;">1. Manual voicemail routing + escalation triage</div>
+          <div style="font-size: 13px; color: rgba(255,255,255,0.65);">5 Zoom voicemails forwarded today in a single hour. New owner at 23821 Hillhurst (#16) still unreached after 5 days — Connor personally apologized, looped in CEO, and forwarded twice. This is his inbox every day.</div>
+        </div>
+        <div style="margin-bottom: 16px; padding: 14px; background: var(--orange-dim); border-radius: 12px; border: 1px solid rgba(240,144,58,0.2);">
+          <div style="font-weight: 700; color: var(--orange); margin-bottom: 4px;">2. Email as the primary operating system</div>
+          <div style="font-size: 13px; color: rgba(255,255,255,0.65);">"Emails" appears 12 times on his own calendar as a scheduled task. Sent Items has 3,952 all-time. He's the first hop for insurance claims, voicemails, HR requests, escrow docs, and homeowner account questions.</div>
+        </div>
+        <div style="padding: 14px; background: var(--ocean-blue-dim); border-radius: 12px; border: 1px solid var(--ocean-blue-mid);">
+          <div style="font-weight: 700; color: var(--ice-blue); margin-bottom: 4px;">3. Manual onboarding steps for every new community</div>
+          <div style="font-size: 13px; color: rgba(255,255,255,0.65);">Summit Court: 5 doc iterations + HomeWiseDocs URGENT today. Casitas Capistrano added to HomeWiseDocs today — triggering another onboarding chain. Lakewood Shores incoming. Each new community triggers 10+ manual steps that run through Connor.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Reactive vs. Proactive Split (estimated from data)</div>
+        <div style="margin-bottom: 20px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="font-size:14px;color:var(--red)">Reactive — Routing, Triage, Admin</span>
+            <span style="font-size:14px;font-weight:700;color:var(--red)">~70%</span>
+          </div>
+          <div class="progress-bar" style="height:10px"><div class="progress-fill fill-red" style="width:70%"></div></div>
+          <div style="font-size:12px;color:var(--text-secondary);margin-top:6px;">Voicemail forwards, escalation emails, HR admin, escrow triage, onboarding doc iterations, support ticket catchup</div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="font-size:14px;color:var(--green)">Proactive — Sales, AI Learning, Strategy</span>
+            <span style="font-size:14px;font-weight:700;color:var(--green)">~30%</span>
+          </div>
+          <div class="progress-bar" style="height:10px"><div class="progress-fill fill-green" style="width:30%"></div></div>
+          <div style="font-size:12px;color:var(--text-secondary);margin-top:6px;">Sales pipeline (6 active prospects), Leland AI Builder L1+L2, website review, LinkedIn, business entity filings</div>
+        </div>
+        <div style="margin-top:16px;padding:12px;background:rgba(255,255,255,0.03);border-radius:12px;border:1px solid rgba(255,255,255,0.06);">
+          <div style="font-size:13px;color:var(--text-secondary);">
+            <i class="fas fa-info-circle" style="color:var(--ocean-blue)"></i>&nbsp;
+            The team (Brian, Shawn, Kathy, Israel, Pam) is growing. But routing still defaults to Connor — every new community and every unanswered call becomes his problem.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 3 — SHARP OBSERVATIONS
+       ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="section-label">Section 3</div>
+    <h2 class="section-title">Sharp Observations</h2>
+
+    <div class="obs-card red">
+      <span class="obs-num">01</span>
+      <div class="obs-title">Connor is the phone system's overflow valve — and it's breaking</div>
+      <div class="obs-body">
+        On Apr 14, <strong>CA Sales answered 5 of 37 calls (13.5%)</strong> and CA Vendors answered zero. The missed calls don't disappear — they come back as voicemails, which Connor is personally forwarding to his team (5 today before 4pm). The 23821 Hillhurst thread shows what happens when a call goes unanswered: <strong>5 days later, Connor is personally apologizing to an escrow agent and looping in the CEO</strong>. The phone system is generating escalations that consume multiples of the original call time.
+      </div>
+    </div>
+
+    <div class="obs-card gold">
+      <span class="obs-num">02</span>
+      <div class="obs-title">His calendar is a to-do list, not a schedule — "Emails" appears 12 times</div>
+      <div class="obs-body">
+        Every "Emails" and "Emails, Calls" block on the calendar is a sign that <strong>reactive communication isn't yet contained within structured time</strong>. Email is showing up as a task because it's not systematic — it's whatever arrives. The calendar also shows Connor personally onboarding Pam (new hire), setting up office monitors, paying Dianna, and changing mailing addresses for all businesses. These are owner-level admin tasks that indicate the team infrastructure is still in build mode. The good news: <strong>multiple team members now exist (Brian, Shawn, Kathy, Israel, Pam, Rebecca, Maya)</strong> — the routing just hasn't caught up.
+      </div>
+    </div>
+
+    <div class="obs-card blue">
+      <span class="obs-num">03</span>
+      <div class="obs-title">Sales is genuinely active — 6 prospects in motion simultaneously</div>
+      <div class="obs-body">
+        Las Mariannas (Dana Point RFP, meeting Wednesday), Lakewood Shores (board-approved transition incoming), Big Canyon Townhomes (meeting set), Mission Courts One (RFP follow-up by Brian), Vista Bonita (contract sent by Shawn), Citrus Park & Villas (updated bids). That's six active prospects across CA and AZ in a single day's email. <strong>This growth is real — and it makes the automation problem more urgent, not less</strong>. Each new community signed is another onboarding chain, more phone volume, and more email flowing through a system that already can't keep up.
+      </div>
+    </div>
+
+    <div class="obs-card purple">
+      <span class="obs-num">04</span>
+      <div class="obs-title">Paternity leave is the hard deadline for automation — not a goal, a constraint</div>
+      <div class="obs-body">
+        "Connor File for Paternity Leave" appeared on Apr 3. This isn't a background consideration — it's a forcing function. Every voicemail Connor currently forwards, every escalation he catches, every onboarding step that runs through him personally: <strong>those break when he's unavailable</strong>. The AI Builder programs (L1 + L2, through May 8) should be treated as a build sprint, not a learning exercise. What gets built in the next 3 weeks determines whether paternity leave is a clean handoff or a fire drill.
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 4 — GOAL ALIGNMENT
+       ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="section-label">Section 4</div>
+    <h2 class="section-title">Goal Alignment</h2>
+
+    <div class="goal-row">
+      <div>
+        <div class="goal-name">Eliminate cross-team onboarding checklists that require my involvement</div>
+        <div class="goal-status">Active gap. Summit Court: 5 doc iterations + urgent HomeWiseDocs request today. Casitas Capistrano just added to HomeWiseDocs — another chain starting. Lakewood Shores incoming. The calendar also shows "Vantaca/Onboarding Escalations" as a scheduled task on Apr 1. Every new community still requires Connor as a step.</div>
+      </div>
+      <span class="goal-badge badge-gap">Active Gap</span>
+    </div>
+
+    <div class="goal-row">
+      <div>
+        <div class="goal-name">Eliminate manually responding to homeowner inquiries</div>
+        <div class="goal-status">Structurally blocked. The phone system (40% completion rate) is generating the inquiries that become emails that Connor routes. Until the intake layer is automated, the routing burden can't be eliminated. Today: 5 voicemail forwards, homeowner account urgents, insurance claims, dues complaints — all flowing through Connor before reaching the right team member.</div>
+      </div>
+      <span class="goal-badge badge-gap">Structurally Blocked</span>
+    </div>
+
+    <div class="goal-row">
+      <div>
+        <div class="goal-name">Build AI-augmented SOPs for employees</div>
+        <div class="goal-status">In progress with urgency. AI Builder L1 + L2 start today (Apr 21). Session topics map directly: "Automate Communication in Your Voice" (L1 S2), "Ship Your First Agent" (L2 S1). Risk: sessions run through May 8 — right at or after paternity leave. SOPs need to be built during sessions, not after.</div>
+      </div>
+      <span class="goal-badge badge-partial">In Progress — Time Constrained</span>
+    </div>
+
+    <div class="goal-row">
+      <div>
+        <div class="goal-name">Proactively onboard new clients without daily fires</div>
+        <div class="goal-status">Most urgent gap. 6 active sales prospects means 6 potential onboarding chains. The current pattern (Summit Court: 5 doc touches, urgent HomeWiseDocs today) will multiply with each new close. Lakewood Shores is already incoming. Closing without a working onboarding pipeline creates more of the same fires.</div>
+      </div>
+      <span class="goal-badge badge-urgent">Urgent — Scaling Risk</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 5 — AUTOMATION OPPORTUNITIES
+       ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="section-label">Section 5</div>
+    <h2 class="section-title">Automation Opportunities</h2>
+    <p style="color:var(--text-secondary);margin-bottom:32px;font-size:14px;">Ranked by: hours reclaimed × direct tie to top goal × urgency before paternity leave. All estimates are drafts.</p>
+
+    <!-- #1 -->
+    <div class="auto-card rank-1">
+      <div class="auto-header">
+        <div>
+          <div class="auto-rank">Rank #1 &nbsp;·&nbsp; Build Before Leave</div>
+          <div class="auto-title">Voicemails Route to the Right CM — Without Connor Touching Them</div>
+        </div>
+        <div class="auto-meta">
+          <span class="auto-badge effort-quick">Quick Win</span>
+          <span class="auto-badge urgent-badge">Before Paternity Leave</span>
+          <span class="auto-badge hours-badge">5–8 hrs/week reclaimed</span>
+        </div>
+      </div>
+      <div class="auto-outcome">
+        A missed call leaves a voicemail. That voicemail is transcribed and routed directly to the right community manager — no Connor in the loop.
+      </div>
+      <div class="auto-grid">
+        <div class="auto-box">
+          <div class="auto-box-label">What's Happening Today</div>
+          <div class="auto-box-text">Connor forwarded 5 Zoom voicemails in a single hour today. They come from the main line (Ext. 500) or individual extensions (Kathy, Ext. 104) and land in his inbox as attachments. He reads, identifies the community, and forwards to the right person.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">Automated Version</div>
+          <div class="auto-box-text">Trigger: Zoom voicemail email arrives. Claude reads the transcription, identifies caller + likely community from number/name, routes to correct CM with summary. If unknown caller, routes to support queue. Zero Connor involvement. Buildable in 2–3 hours.</div>
+        </div>
+      </div>
+      <div class="draft-note">DRAFT ESTIMATE</div>
+    </div>
+
+    <!-- #2 -->
+    <div class="auto-card rank-2">
+      <div class="auto-header">
+        <div>
+          <div class="auto-rank">Rank #2 &nbsp;·&nbsp; Build Before Leave</div>
+          <div class="auto-title">New Client Onboarding Runs Without Connor as a Checkpoint</div>
+        </div>
+        <div class="auto-meta">
+          <span class="auto-badge effort-medium">Medium Lift</span>
+          <span class="auto-badge urgent-badge">Before Paternity Leave</span>
+          <span class="auto-badge hours-badge">4–6 hrs per onboarding</span>
+        </div>
+      </div>
+      <div class="auto-outcome">
+        When a new community signs, the questionnaire, transition sheet, welcome letter, and HomeWiseDocs setup all happen without Connor touching a single document.
+      </div>
+      <div class="auto-grid">
+        <div class="auto-box">
+          <div class="auto-box-label">What's Happening Today</div>
+          <div class="auto-box-text">Summit Court: 5 doc iterations across 3 days. Casitas Capistrano triggering HomeWiseDocs setup today. Calendar block "Vantaca/Onboarding Escalations" appears Apr 1. Lakewood Shores incoming. Each close adds 10+ manual steps.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">Automated Version</div>
+          <div class="auto-box-text">Trigger: new community signed in Vantaca or HomeWiseDocs. Claude generates personalized questionnaire, transition sheet, and welcome letter from templates. Community manager gets a draft to review and send — one click approval. Connor never sees it.</div>
+        </div>
+      </div>
+      <div class="draft-note">DRAFT ESTIMATE</div>
+    </div>
+
+    <!-- #3 -->
+    <div class="auto-card rank-3">
+      <div class="auto-header">
+        <div>
+          <div class="auto-rank">Rank #3</div>
+          <div class="auto-title">Homeowner Inquiries Get Drafted Responses — Team Just Approves</div>
+        </div>
+        <div class="auto-meta">
+          <span class="auto-badge effort-medium">Medium Lift</span>
+          <span class="auto-badge hours-badge">5–7 hrs/week reclaimed</span>
+        </div>
+      </div>
+      <div class="auto-outcome">
+        Every homeowner email in the support queue gets a drafted response using Vantaca data — the team reviews and hits send.
+      </div>
+      <div class="auto-grid">
+        <div class="auto-box">
+          <div class="auto-box-label">What's Happening Today</div>
+          <div class="auto-box-text">Dues complaints (Stonehurst homeowner today), account issues (Via Alfredo URGENT), insurance questions — all landing in Connor's inbox first, then forwarded to team. Each requires reading, categorizing, and routing before anyone can respond.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">Automated Version</div>
+          <div class="auto-box-text">Trigger: email to support inbox. Claude reads, categorizes (dues/violation/maintenance/escrow), pulls Vantaca account data, drafts response in Lifetime voice. Team sees: Category · Draft · Approve or Edit. Connor removed. HOA Smart Center (nsc.team) could be the intake layer.</div>
+        </div>
+      </div>
+      <div class="draft-note">DRAFT ESTIMATE</div>
+    </div>
+
+    <!-- #4 -->
+    <div class="auto-card rank-4">
+      <div class="auto-header">
+        <div>
+          <div class="auto-rank">Rank #4</div>
+          <div class="auto-title">Homeowner Calls Get Answered by AI on the First Ring</div>
+        </div>
+        <div class="auto-meta">
+          <span class="auto-badge effort-big">Big Build</span>
+          <span class="auto-badge hours-badge">8–12 hrs/week reclaimed</span>
+        </div>
+      </div>
+      <div class="auto-outcome">
+        CA Sales completes calls at 80%+ because an AI voice agent handles FAQs before the call reaches a human or voicemail.
+      </div>
+      <div class="auto-grid">
+        <div class="auto-box">
+          <div class="auto-box-label">What's Happening Today</div>
+          <div class="auto-box-text">CA Sales: 5 of 37 calls completed (13.5%). CA Vendors: 0%. Every missed call becomes a voicemail that Connor routes manually. The 23821 Hillhurst situation shows the downstream cost: one missed intake → 5-day gap → CEO escalation.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">Automated Version</div>
+          <div class="auto-box-text">Trigger: inbound call to any queue. AI voice agent answers, pulls homeowner record from Vantaca by phone number, handles tier-1 FAQs (dues balance, violation status, meeting dates, payment portal). Complex issues → live transfer with context summary.</div>
+        </div>
+      </div>
+      <div class="draft-note">DRAFT ESTIMATE</div>
+    </div>
+
+    <!-- #5 -->
+    <div class="auto-card rank-5">
+      <div class="auto-header">
+        <div>
+          <div class="auto-rank">Rank #5 &nbsp;·&nbsp; Quick Win</div>
+          <div class="auto-title">Session Learning Converts to Employee SOPs Within 24 Hours</div>
+        </div>
+        <div class="auto-meta">
+          <span class="auto-badge effort-quick">Quick Win</span>
+          <span class="auto-badge hours-badge">2–3 hrs/week reclaimed</span>
+        </div>
+      </div>
+      <div class="auto-outcome">
+        Every Leland AI Builder session produces a Word-format employee SOP in SharePoint by the next morning — no writing time from Connor.
+      </div>
+      <div class="auto-grid">
+        <div class="auto-box">
+          <div class="auto-box-label">What's Happening Today</div>
+          <div class="auto-box-text">Connor is in L1 + L2 simultaneously (through May 8). Knowledge stays with him. The team (Pam just onboarded, Brian, Kathy, Rebecca) can't benefit until Connor writes it up — which may not happen before paternity leave.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">Automated Version</div>
+          <div class="auto-box-text">Trigger: upload session notes or recording transcript. Claude converts to step-by-step employee SOP, M365 Word format, non-technical language. Saves to SharePoint automatically. Session topics "Automate Communication" and "Ship First Agent" become SOPs immediately usable by team.</div>
+        </div>
+      </div>
+      <div class="draft-note">DRAFT ESTIMATE</div>
+    </div>
+
+    <!-- #6 -->
+    <div class="auto-card rank-6">
+      <div class="auto-header">
+        <div>
+          <div class="auto-rank">Rank #6 &nbsp;·&nbsp; Quick Win</div>
+          <div class="auto-title">Weekly Phone + Email Ops Summary Lands in Inbox Automatically</div>
+        </div>
+        <div class="auto-meta">
+          <span class="auto-badge effort-quick">Quick Win</span>
+          <span class="auto-badge hours-badge">1 hr/week + faster issue detection</span>
+        </div>
+      </div>
+      <div class="auto-outcome">
+        Every Monday, Connor sees call queue completion rates, voicemail volume, and top email categories — without pulling a single report.
+      </div>
+      <div class="auto-grid">
+        <div class="auto-box">
+          <div class="auto-box-label">What's Happening Today</div>
+          <div class="auto-box-text">Call queue data manually downloaded as CSV (Apr 14 file). No automatic alerting means the CA Sales 13.5% completion rate could persist for weeks undetected. Email volume by community (Summit Court: 56, Rossmoor: 52) visible only by manually checking folder counts.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">Automated Version</div>
+          <div class="auto-box-text">Trigger: Monday 8am cron. Scheduled Claude agent pulls Zoom API for call queue metrics, counts inbound email by community folder, flags anything below threshold (e.g. completion rate &lt;50%), emails formatted summary. Setup: under 2 hours using Claude Code + schedule skill.</div>
+        </div>
+      </div>
+      <div class="draft-note">DRAFT ESTIMATE</div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 6 — DATA SOURCES
+       ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="section-label">Section 6</div>
+    <h2 class="section-title">Data Sources</h2>
+    <div class="source-grid">
+      <div class="source-card">
+        <div class="status ok">✓ Accessed</div>
+        <div class="source-name">Outlook Email (Sent + Inbox)</div>
+        <div class="source-detail">connector@lifetimehoa.com — 30 days. Sent mail + inbox patterns from Apr 21. Email folder structure reveals all communities, business units, and operational categories. Sent Items: 3,952 total.</div>
+      </div>
+      <div class="source-card">
+        <div class="status ok">✓ Accessed</div>
+        <div class="source-name">Outlook Calendar</div>
+        <div class="source-detail">Apr 1–21. 50 events parsed. Mix of real meetings (Sales, CA Check-in, Roundtable) and self-scheduled tasks (12× "Emails"). Revealed paternity leave prep (Apr 3), new hire Pam onboarding (Apr 2–6).</div>
+      </div>
+      <div class="source-card">
+        <div class="status ok">✓ Accessed</div>
+        <div class="source-name">Downloads Folder Activity</div>
+        <div class="source-detail">~/Downloads — Apr 10–21. Key signals: Summit Court onboarding docs (5 iterations), Transition Sheets (2 versions Apr 14), business entity filings (Apr 10), AI Builder calendar invites, Slack install today.</div>
+      </div>
+      <div class="source-card">
+        <div class="status ok">✓ Accessed</div>
+        <div class="source-name">Zoom Call Queue Report</div>
+        <div class="source-detail">Apr 14 CSV snapshot. 3 queues: CA Support (54%), CA Sales (13.5%), CA Vendors (0%). 144 total inbound calls, 60 unanswered. Cross-referenced with voicemail forward pattern in email.</div>
+      </div>
+      <div class="source-card">
+        <div class="status ok">✓ Accessed</div>
+        <div class="source-name">Calendar ICS (AI Builder)</div>
+        <div class="source-detail">L1 + L2 Leland programs. Full session schedule Apr 21 – May 8. 6 sessions each + 3 L2 office hours. Topics: Ship Your First Agent, Automate Communication in Your Voice, Build an Agent That Writes in Your Voice.</div>
+      </div>
+      <div class="source-card">
+        <div class="status partial">⚠ Blocked — Fixable</div>
+        <div class="source-name">Mac Screen Time + Safari History</div>
+        <div class="source-detail">Both require Full Disk Access. <strong>Fix:</strong> System Settings → Privacy & Security → Full Disk Access → add Terminal (or Claude). Chrome was just installed today so Chrome history is April 21 only. Safari is the primary browser — enabling would complete the picture.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <p>Time Audit — <strong>April 21, 2026</strong> &nbsp;|&nbsp; Part of the <strong>AI Builder Automation Portfolio</strong> &nbsp;|&nbsp; Connor Brent · Lifetime HOA Management</p>
+</footer>
+
+</body>
+</html>
