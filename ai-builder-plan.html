@@ -551,25 +551,28 @@
     <div class="section-eyebrow">Full Program</div>
     <div class="section-heading">My System</div>
 
-    <!-- Current sprint callout -->
-    <div class="sprint-current">
+    <!-- S1 — Done -->
+    <div class="sprint-current" style="background:var(--charcoal);margin-bottom:12px;">
+      <div class="sprint-current-left">
+        <div class="sprint-label">Completed</div>
+        <div class="sprint-title">S1 — Automation Plan + Time Audit</div>
+        <div class="sprint-sub">Identified where time goes. Defined 7 automations to build. Built the plan.</div>
+      </div>
+      <span class="sprint-badge" style="background:rgba(46,158,99,0.25);border-color:rgba(46,158,99,0.5);"><i class="fas fa-check" style="font-size:8px;margin-right:6px;color:#4caf7d"></i> Done</span>
+    </div>
+
+    <!-- S2 — Current -->
+    <div class="sprint-current" style="margin-bottom:20px;">
       <div class="sprint-current-left">
         <div class="sprint-label">Now Building</div>
-        <div class="sprint-title">S1 — Automation Plan + Time Audit</div>
-        <div class="sprint-sub">Identify where time goes. Define what to automate. Build the plan.</div>
+        <div class="sprint-title">S2 — Deployed Dashboard + Automation Advisor</div>
+        <div class="sprint-sub">Live Notion-backed roadmap. Agent that reads my work and surfaces what to automate next.</div>
       </div>
       <span class="sprint-badge"><i class="fas fa-circle" style="font-size:8px;margin-right:6px;color:#4caf7d"></i> In Progress</span>
     </div>
 
     <!-- Future sprint placeholders -->
     <div class="sprint-grid">
-
-      <div class="sprint-placeholder">
-        <div class="sprint-ph-icon"><i class="fas fa-globe"></i></div>
-        <div class="sprint-ph-label">S2</div>
-        <div class="sprint-ph-title">Deployed Website + Data Collection Tool</div>
-        <div class="sprint-ph-coming">Coming in Sprint 2</div>
-      </div>
 
       <div class="sprint-placeholder">
         <div class="sprint-ph-icon"><i class="fas fa-project-diagram"></i></div>
@@ -604,9 +607,134 @@
 
 </div></div>
 
+<!-- ── SPRINT 2 SECTION ────────────────────────────────────────────────── -->
+<div class="section-wrap sky">
+<div class="section-inner">
+  <section>
+    <div class="section-eyebrow">Sprint 2 Builds</div>
+    <div class="section-heading">What I Built in Sprint 2</div>
+
+    <!-- Build 1 — Kanban Dashboard -->
+    <div class="auto-card">
+      <div class="rank-bar r1"></div>
+      <div class="auto-card-top">
+        <div class="auto-header">
+          <div>
+            <div class="auto-rank">Build 1</div>
+            <div class="auto-title">Live Automation Roadmap Dashboard</div>
+          </div>
+          <div class="badge-row" style="flex-direction:column;align-items:flex-end;">
+            <div class="badge-row">
+              <span class="badge b-quick">Deployed</span>
+              <span class="badge b-hours">7 automations</span>
+            </div>
+          </div>
+        </div>
+        <div class="auto-outcome">
+          A Kanban board with 7 automation ideas as draggable cards — wired live to Notion so status updates persist across devices.
+        </div>
+      </div>
+      <div class="auto-card-body">
+        <div class="auto-box">
+          <div class="auto-box-label">What It Does</div>
+          <div class="auto-box-text">Four columns: Suggested, To Build, In Progress, Done. Drag a card to a new column and the status updates in Notion in real time. Any device opening the URL sees the same live state — no more localStorage.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">How It's Built</div>
+          <div class="auto-box-text">Static HTML + a Vercel serverless function at /api/roadmap. GET returns all rows from the Notion database. PATCH updates Status when a card is dragged. Deployed to Vercel, connected to GitHub for automatic redeploys.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Build 2 — Notion Backend -->
+    <div class="auto-card">
+      <div class="rank-bar r2"></div>
+      <div class="auto-card-top">
+        <div class="auto-header">
+          <div>
+            <div class="auto-rank">Build 2</div>
+            <div class="auto-title">Notion Automation Roadmap Database</div>
+          </div>
+          <div class="badge-row" style="flex-direction:column;align-items:flex-end;">
+            <div class="badge-row">
+              <span class="badge b-quick">Live</span>
+              <span class="badge b-hours">6 columns</span>
+            </div>
+          </div>
+        </div>
+        <div class="auto-outcome">
+          A structured Notion database that acts as the single source of truth for every automation idea — mine and my team's.
+        </div>
+      </div>
+      <div class="auto-card-body">
+        <div class="auto-box">
+          <div class="auto-box-label">What It Does</div>
+          <div class="auto-box-text">Tracks Name, Status, Priority, Description, Submitted by, and Submitted at for every automation idea. The Suggested column is open for anyone on the team to add ideas — they flow straight into the dashboard without me touching anything.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">How It's Built</div>
+          <div class="auto-box-text">Created via Notion MCP directly from Claude Code. Wired to the dashboard via a Notion integration (internal API token). Status changes on the board write back via PATCH. Database ID: 006d3312.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Build 3 — Automation Advisor -->
+    <div class="auto-card">
+      <div class="rank-bar r3"></div>
+      <div class="auto-card-top">
+        <div class="auto-header">
+          <div>
+            <div class="auto-rank">Build 3</div>
+            <div class="auto-title">Automation Advisor Agent</div>
+          </div>
+          <div class="badge-row" style="flex-direction:column;align-items:flex-end;">
+            <div class="badge-row">
+              <span class="badge b-medium">3 Modes</span>
+              <span class="badge b-hours">60-sec briefing</span>
+            </div>
+          </div>
+        </div>
+        <div class="auto-outcome">
+          A Claude skill that reads my live roadmap, scans yesterday's email/calendar/Teams/Zoom activity, and surfaces what to automate next — in under 60 seconds.
+        </div>
+      </div>
+      <div class="auto-card-body">
+        <div class="auto-box">
+          <div class="auto-box-label">What It Does</div>
+          <div class="auto-box-text">Mode 1: reads the Notion roadmap, surfaces top priorities and stalls. Mode 2: scans email, calendar, Teams messages, Zoom call history, and Claude session transcripts — finds manual tasks and drafts Suggested cards. Mode 3: interactive build planner — interviews me and produces a scoped build plan.</div>
+        </div>
+        <div class="auto-box">
+          <div class="auto-box-label">How It's Built</div>
+          <div class="auto-box-text">Saved as a Claude skill at ~/.claude/skills/automation-advisor/SKILL.md. Invoke with /automation-advisor. Modes 1 and 2 spawn parallel subagents. "Add to my roadmap" writes suggestions directly to Notion. "Scope it" triggers the interactive build planner.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live URLs -->
+    <div class="summary-card" style="margin-top:8px;">
+      <div class="finding" style="margin-bottom:16px;">Live URLs</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span class="badge b-hours" style="min-width:110px;text-align:center;">Time Audit</span>
+          <a href="https://ai-builder-pi-five.vercel.app/time-audit.html" style="font-size:13px;color:var(--ocean-blue);">ai-builder-pi-five.vercel.app/time-audit.html</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span class="badge b-hours" style="min-width:110px;text-align:center;">Sprint 1 Plan</span>
+          <a href="https://ai-builder-pi-five.vercel.app/ai-builder-plan.html" style="font-size:13px;color:var(--ocean-blue);">ai-builder-pi-five.vercel.app/ai-builder-plan.html</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span class="badge b-quick" style="min-width:110px;text-align:center;">Dashboard</span>
+          <a href="https://ai-builder-pi-five.vercel.app/ai-builder-dashboard.html" style="font-size:13px;color:var(--ocean-blue);">ai-builder-pi-five.vercel.app/ai-builder-dashboard.html</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div></div>
+
 <!-- ── FOOTER ──────────────────────────────────────────────────────────── -->
 <footer>
-  <p>AI Builder Automation Portfolio — <strong>April 21, 2026</strong> &nbsp;|&nbsp; Built in <strong>L2</strong></p>
+  <p>AI Builder Automation Portfolio — <strong>April 24, 2026</strong> &nbsp;|&nbsp; Built in <strong>L2</strong></p>
 </footer>
 
 </body>
